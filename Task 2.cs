@@ -6,10 +6,10 @@
 //      вернуть ack (n - 1, 1)
 //    еще
 //      вернуть ack(n - 1, ack (n, m - 1))
-Console.WriteLine("Введите первое число:");
-int A = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите второе число:");
-int B = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число N:");
+int N = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число M:");
+int M = Convert.ToInt32(Console.ReadLine());
 
 int CalculationAckermansFunction(int firstNumber, int secondNumber)
 {
@@ -17,14 +17,17 @@ int CalculationAckermansFunction(int firstNumber, int secondNumber)
     {
         return secondNumber + 1;
     }
-    else if (secondNumber == 0)
-    {
-        return CalculationAckermansFunction(firstNumber - 1, secondNumber);
-    }
     else
     {
-        return CalculationAckermansFunction(firstNumber - 1, CalculationAckermansFunction(firstNumber, secondNumber - 1));
+        if (secondNumber == 0)
+        {
+            return CalculationAckermansFunction(firstNumber - 1, 1);
+        }
+        else
+        {
+            return CalculationAckermansFunction(firstNumber - 1, CalculationAckermansFunction(firstNumber, secondNumber - 1));
+        }
     }
 }
 
-Console.WriteLine(CalculationAckermansFunction(A, b));
+Console.WriteLine(CalculationAckermansFunction(N, M));
